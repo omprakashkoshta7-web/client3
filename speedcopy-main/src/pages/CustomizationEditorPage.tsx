@@ -426,7 +426,6 @@ const handleAddToCart = async () => {
       const variant  = templateConfig?.variant;
       console.log('🛒 Variant data:', variant);
       console.log('🛒 Price:', variant?.salePrice, variant?.price);
-      const cartFlowType = flow === 'business_printing' ? 'printing' : flow;
       
       // Priority: livePreview > serverPreview > uploadedImage
       const customPreviewUrl = livePreview || serverPreviewUrl || '';
@@ -509,14 +508,14 @@ const res = await designService.renderCustomizationPreview(customizationId);
   }, [ensureSession]);
 
   // ── 12. Add graphic (placeholder) ──────────────────────────────────────────
-  const handleAddGraphic = useCallback((slotId: string, graphicUrl: string) => {
-    console.log('Add graphic not implemented:', slotId, graphicUrl);
-  }, []);
+  // const handleAddGraphic = useCallback((slotId: string, graphicUrl: string) => {
+  //   console.log('Add graphic not implemented:', slotId, graphicUrl);
+  // }, []);
 
   // ── 13. Reorder layers (placeholder) ───────────────────────────────────────
-  const handleReorderLayers = useCallback((slotId: string, direction: 'up' | 'down') => {
-    console.log('Reorder layers not implemented:', slotId, direction);
-  }, []);
+  // const handleReorderLayers = useCallback((slotId: string, direction: 'up' | 'down') => {
+  //   console.log('Reorder layers not implemented:', slotId, direction);
+  // }, []);
 
   // ── 14. Capture live preview via html2canvas ───────────────────────────────
   const captureLivePreview = useCallback(async (): Promise<string> => {

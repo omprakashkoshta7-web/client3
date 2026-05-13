@@ -3,14 +3,14 @@ const UPLOADS_BASE_URL = 'https://uploads-202671058278.asia-east1.run.app';
 const GATEWAY_BASE_URL = (
   import.meta.env.VITE_API_BASE_URL || 'https://gateway-202671058278.asia-east1.run.app/api'
 ).replace(/\/api\/?$/, '');
-const PUBLIC_UPLOADS_BASE_URL = GATEWAY_BASE_URL;
-const UPLOAD_PROXY_HOSTS = new Set([
-  'gateway-202671058278.asia-east1.run.app',
-  'commerce-service-202671058278.asia-east1.run.app',
-  'commerce-service-202671058278.asia-south2.run.app',
-  'cdn-202671058278.asia-east1.run.app',
-  'uploads-202671058278.asia-east1.run.app',
-]);
+// const PUBLIC_UPLOADS_BASE_URL = GATEWAY_BASE_URL;
+// const UPLOAD_PROXY_HOSTS = new Set([
+//   'gateway-202671058278.asia-east1.run.app',
+//   'commerce-service-202671058278.asia-east1.run.app',
+//   'commerce-service-202671058278.asia-south2.run.app',
+//   'cdn-202671058278.asia-east1.run.app',
+//   'uploads-202671058278.asia-east1.run.app',
+// ]);
 
 type ImageLike =
   | string
@@ -137,22 +137,21 @@ function isExternalUrl(url: string): boolean {
          url.startsWith('//');
 }
 
-function getUploadProxyUrl(url: string): string | null {
-  if (!url.startsWith('http://') && !url.startsWith('https://')) return null;
-
-  try {
-    const parsed = new URL(url);
-    if (parsed.hostname === new URL(GATEWAY_BASE_URL).hostname) return url;
-    if (!UPLOAD_PROXY_HOSTS.has(parsed.hostname)) return null;
-
-    const uploadPath = extractUploadsPath(parsed.pathname);
-    if (!uploadPath) return null;
-
-    return joinUrl(PUBLIC_UPLOADS_BASE_URL, uploadPath);
-  } catch {
-    return null;
-  }
-}
+// function getUploadProxyUrl(url: string): string | null {
+//   if (!url.startsWith('http://') && !url.startsWith('https://')) return null;
+//
+//   try {
+//     const parsed = new URL(url);
+//     if (parsed.hostname === new URL(GATEWAY_BASE_URL).hostname) return url;
+//     if (!UPLOAD_PROXY_HOSTS.has(parsed.hostname)) return null;
+//
+//     const uploadPath = extractUploadsPath(parsed.pathname);
+//     if (!uploadPath) return null;
+//     return joinUrl(PUBLIC_UPLOADS_BASE_URL, uploadPath);
+//   } catch {
+//     return null;
+//   }
+// }
 
 function extractUploadsPath(value: string): string {
   const normalized = value.trim().replace(/^['"]|['"]$/g, '').replace(/\\/g, '/');

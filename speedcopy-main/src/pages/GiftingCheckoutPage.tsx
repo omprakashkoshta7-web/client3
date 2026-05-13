@@ -40,7 +40,6 @@ const GiftingCheckoutPage: React.FC = () => {
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [savingAddress, setSavingAddress] = useState(false);
   const [editingAddress, setEditingAddress] = useState<any>(null);
-  const [duplicateItemModal, setDuplicateItemModal] = useState<{show: boolean; existingQty: number; itemName: string}>({ show: false, existingQty: 0, itemName: '' });
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
 

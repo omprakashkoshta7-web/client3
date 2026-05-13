@@ -221,23 +221,6 @@ class OrderService {
     }
   }
 
-  private async getPreviewFromIndexedDB(customizationId: string): Promise<string | null> {
-    try {
-      const db = await this.openIndexedDB();
-      if (!db) return null;
-      return new Promise((resolve, reject) => {
-        const tx = db.transaction('preview_cache', 'readonly');
-        const store = tx.objectStore('preview_cache');
-        const request = store.get(customizationId);
-        request.onerror = () => reject(request.error);
-        request.onsuccess = () => resolve(request.result?.preview || null);
-      });
-    } catch (err) {
-      console.warn('Failed to retrieve preview from IndexedDB:', err);
-      return null;
-    }
-  }
-
   // ============================================
   // Cart Methods (Existing)
   // ============================================

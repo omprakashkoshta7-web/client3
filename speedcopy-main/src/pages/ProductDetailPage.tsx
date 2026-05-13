@@ -6,7 +6,6 @@ import { useAuth } from '../context/AuthContext';
 import { useWishlist } from '../hooks/useWishlist';
 import productService from '../services/product.service';
 import orderService from '../services/order.service';
-import designService from '../services/design.service';
 import BusinessCardCustomizer, { type BusinessCardCustomization } from '../components/BusinessCardCustomizer';
 import ProductFramesSelector from '../components/ProductFramesSelector';
 import type { Frame } from '../services/design.service';
@@ -103,9 +102,7 @@ const ProductDetailPage: React.FC = () => {
   const [pincodeInput, setPincodeInput] = useState('');
   const [pincodeStatus, setPincodeStatus] = useState<'idle' | 'checking' | 'available' | 'unavailable'>('idle');
   const [pincodeInfo, setPincodeInfo] = useState<{ city?: string; state?: string; estimatedDays?: string } | null>(null);
-  const [imageErrorMap, setImageErrorMap] = useState<Record<string, boolean>>({});
   const { isWishlisted, toggleWishlist } = useWishlist();
-  // Removed unused iconType variable
 
   useEffect(() => {
     if (!id) return;
@@ -151,9 +148,6 @@ const ProductDetailPage: React.FC = () => {
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>, originalSrc: string) => {
     console.warn('❌ Image failed to load:', originalSrc);
-    
-    // Mark as failed
-    setImageErrorMap(prev => ({ ...prev, [originalSrc]: true }));
     
     // Try to use alternate CDN URL
     if (!originalSrc.includes('unsplash') && originalSrc.includes('cdn-202671058278')) {

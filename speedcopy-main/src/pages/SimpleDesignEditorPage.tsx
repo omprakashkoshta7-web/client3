@@ -49,7 +49,6 @@ const SimpleDesignEditorPage: React.FC = () => {
         setError('');
 
         const flow = searchParams.get('flow') || 'gifting';
-        const designMode = searchParams.get('designMode') || 'normal';
 
         // Fetch product data based on flow type
         let productData: any;

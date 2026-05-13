@@ -111,8 +111,8 @@ const ProductListPage: React.FC = () => {
         if (typeFromUrl) {
           const res = await businessPrintingService.getBusinessProducts({ page, limit: 12, type: typeFromUrl });
           const resData = res.data || res;
-          productsData = resData.products || [];
-          metaData = resData.meta || resData.pagination || {};
+          productsData = (resData as any).products || (res as any).data?.products || [];
+          metaData = (resData as any).meta || (resData as any).pagination || (res as any).data?.meta || {};
         }
         
         // If no results from business printing API, fall back to generic products API
