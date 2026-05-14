@@ -151,6 +151,8 @@ export interface Product {
   highlights?: string[];
   mrp: number;
   sale_price?: number;
+  basePrice?: number;
+  base_price?: number;
   discount_pct?: number;
   bulk_price?: number;
   min_bulk_qty?: number;
