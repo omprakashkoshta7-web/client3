@@ -29,7 +29,7 @@ export interface PriceDisplay {
  */
 export const calculateDiscountInfo = (product: Product): DiscountInfo => {
   const discountPct = Number(product.discount_pct || 0);
-  const currentPrice = product.sale_price ?? product.mrp ?? 0;
+  const currentPrice = product.sale_price ?? product.mrp ?? product.basePrice ?? product.base_price ?? 0;
   const originalPrice = product.mrp ?? currentPrice;
   const hasDiscount = discountPct > 0 && originalPrice > currentPrice;
   const savings = hasDiscount ? originalPrice - currentPrice : 0;
